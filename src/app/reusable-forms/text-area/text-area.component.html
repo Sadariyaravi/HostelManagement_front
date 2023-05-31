@@ -1,0 +1,52 @@
+<div class="flex flex-col gap-2 w-full">
+  <div class="p-2 w-full">
+    <div class="w-full flex flex-col gap-2">
+      <div class="flex">
+        <div
+          *ngIf="iconclass"
+          class="p-2 border-s-2 border-t-2 border-b-2 border-black"
+        >
+          <i class="{{ iconclass }}"></i>
+        </div>
+        <textarea
+          rows="3"
+          placeholder="{{ label }}"
+          pInputTextarea
+          [autoResize]="true"
+          class="border-2 border-black w-full rounded-none bg-primary6 placeholder-black"
+          [formControl]="control"
+        ></textarea>
+      </div>
+      <div *ngIf="control?.invalid && control?.touched">
+        <div *ngIf="control?.errors?.['required']" class="flex gap-2">
+          <i class="fa-solid fa-circle-exclamation fa-bounce text-red-600"></i>
+          <p i18n class="text-sm text-red-600 font-semibold">
+            {{ label }} is required
+          </p>
+        </div>
+        <div *ngIf="control?.errors?.['maxlength']" class="flex gap-2">
+          <i class="fa-solid fa-circle-exclamation fa-bounce text-red-600"></i>
+          <p i18n class="text-sm text-red-500 font-semibold">
+            Max length for this Field is 8
+          </p>
+        </div>
+        <div *ngIf="control?.errors?.['minlength']" class="flex gap-2">
+          <i class="fa-solid fa-circle-exclamation fa-bounce text-red-600"></i>
+          <p i18n class="text-sm text-red-500 font-semibold">
+            Min length for this Field is 3
+          </p>
+        </div>
+        <div *ngIf="control?.errors?.['pattern']" class="flex gap-2">
+          <i class="fa-solid fa-circle-exclamation fa-bounce text-red-600"></i>
+          <p i18n class="text-sm text-red-500 font-semibold">
+            Invalid {{ label }}
+          </p>
+        </div>
+        <div *ngIf="control?.errors?.['email']" class="flex gap-2">
+          <i class="fa-solid fa-circle-exclamation fa-bounce text-red-600"></i>
+          <p i18n class="text-sm text-red-500 font-semibold">Invalid Email</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

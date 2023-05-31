@@ -1,0 +1,37 @@
+<div class="flex flex-col gap-2 w-full">
+  <div class="p-2 w-full">
+    <div class="w-full flex flex-col gap-2">
+      <div class="flex">
+        <div
+          *ngIf="iconclass"
+          class="p-2 border-s-2 border-t-2 border-b-2 border-black"
+        >
+          <i class="{{ iconclass }}"></i>
+        </div>
+        <p-dropdown
+          [options]="model"
+          [formControl]="control"
+          optionLabel="name"
+          optionValue="id"
+          [styleClass]="'border-2 border-black w-full bg-primary6 rounded-none placeholder-black'"
+          class="w-full placeholder-black"
+          placeholder="{{ label }}"
+        ></p-dropdown>
+      </div>
+      <div *ngIf="control?.invalid && control?.touched">
+        <div *ngIf="control?.errors?.['required']" class="flex gap-2">
+          <i class="fa-solid fa-circle-exclamation fa-bounce text-red-600"></i>
+          <p class="text-sm text-red-600 font-semibold">
+            Please {{ label }} it is required
+          </p>
+        </div>
+        <div *ngIf="control?.errors?.['pattern']" class="flex gap-2">
+          <i class="fa-solid fa-circle-exclamation fa-bounce text-red-600"></i>
+          <p class="text-sm text-red-500 font-semibold">
+            Invalid {{ label }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

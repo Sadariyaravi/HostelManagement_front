@@ -1,0 +1,39 @@
+<div class="flex flex-col gap-2 w-full">
+  <div class="p-2 w-full">
+    <div class="w-full flex flex-col gap-2">
+      <div class="flex w-full">
+        <div
+          *ngIf="iconclass"
+          class="p-2 border-s-2 border-t-2 border-b-2 border-black"
+        >
+          <i class="{{ iconclass }}"></i>
+        </div>
+        <p-calendar
+          [formControl]="control"
+          dateFormat="dd/mm/yy"
+          placeholder="{{ label }}"
+          inputStyleClass="bg-primary6"
+          styleClass="w-full border-2 border-black rounded-none placeholder-black"
+          class="w-full placeholder-black"
+          [monthNavigator]="true"
+          [yearNavigator]="true"
+          yearRange="1980:2023"
+        ></p-calendar>
+      </div>
+      <div *ngIf="control?.invalid && control?.touched">
+        <div *ngIf="control?.errors?.['required']" class="flex gap-2">
+          <i class="fa-solid fa-circle-exclamation fa-bounce text-red-600"></i>
+          <p class="text-sm text-red-600 font-semibold">
+            {{ label }} is required
+          </p>
+        </div>
+        <div *ngIf="control?.errors?.['pattern']" class="flex gap-2">
+          <i class="fa-solid fa-circle-exclamation fa-bounce text-red-600"></i>
+          <p class="text-sm text-red-500 font-semibold">
+            Invalid {{ label }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

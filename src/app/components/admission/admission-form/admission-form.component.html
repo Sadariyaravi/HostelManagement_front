@@ -1,0 +1,111 @@
+<div class="bg-primary5 min-h-screen">
+  <div class="container mx-auto p-5">
+    <div class="flex flex-col gap-5">
+      <form action="" [formGroup]="AdmissionForm">
+        <div>
+          <p-fieldset
+            styleClass="border-2 border-black rounded-none ps-5 shadow-[7px_7px_0px_0px_#000]"
+          >
+            <ng-template pTemplate="header">
+              <div class="flex align-items-center text-primary">
+                <span class="fa-solid fa-user pt-1.5 pr-2"></span>
+                <span class="font-bold text-lg">Student's Detail</span>
+              </div>
+            </ng-template>
+            <div class="flex flex-col gap-3">
+              <!-- First Row -->
+              <div class="flex w-full gap-4">
+                <app-input-tag
+                  [label]="'Firstname'"
+                  formControlName="firstName"
+                  class="w-1/3"
+                ></app-input-tag>
+                <app-input-tag
+                  [label]="'Middlename'"
+                  formControlName="middlename"
+                  class="w-1/3"
+                ></app-input-tag>
+                <app-input-tag
+                  [label]="'Lastname'"
+                  formControlName="Lastname"
+                  class="w-1/3"
+                ></app-input-tag>
+              </div>
+              <!-- First Row -->
+
+              <!-- Second Row -->
+              <div class="flex gap-4 w-full">
+                <app-date-picker
+                  label="BirthDate"
+                  formControlName="BirthDate"
+                  class="w-1/3"
+                >
+                </app-date-picker>
+                <app-drop-down
+                  label="Select College"
+                  iconclass="fa-solid fa-building-columns"
+                  formControlName="collegeName"
+                  class="w-1/3"
+                >
+                </app-drop-down>
+                <app-drop-down
+                  label="Select Course"
+                  iconclass="fa-solid fa-graduation-cap"
+                  formControlName="courseName"
+                  class="w-1/3"
+                >
+                </app-drop-down>
+              </div>
+              <!-- Second Row -->
+
+              <!-- Third Row -->
+              <div class="flex w-full gap-4">
+                <app-input-tag
+                  [label]="'PhoneNumber'"
+                  [iconclass]="'fa-solid fa-phone'"
+                  formControlName="PhoneNumber"
+                  class="w-1/2"
+                ></app-input-tag>
+                <app-input-tag
+                  [label]="'Email Address'"
+                  [iconclass]="'fa-solid fa-envelope'"
+                  formControlName="EmailId"
+                  class="w-1/2"
+                ></app-input-tag>
+              </div>
+              <!-- Third Row -->
+
+              <!-- Fourth Row -->
+              <div class="flex w-full gap-4">
+                <app-text-area
+                  [label]="'Permanent Address'"
+                  [iconclass]="'fa-solid fa-map-location-dot'"
+                  formControlName="PermanentAddress"
+                  class="w-1/2"
+                >
+                </app-text-area>
+                <app-text-area
+                  label="Relative's Address"
+                  [iconclass]="'fa-solid fa-map-location-dot'"
+                  formControlName="RelativeAddress"
+                  class="w-1/2"
+                >
+                </app-text-area>
+              </div>
+              <!-- Fourth Row -->
+            </div>
+          </p-fieldset>
+        </div>
+      </form>
+      <div class="flex w-full justify-center">
+        <button
+          class="bg-white w-1/5 duration-200 ease-in-out transition-all border-2 border-black hover:border-black hover:bg-black hover:text-white antialiased tracking-wide text-lg font-bold px-9 py-2 hover:x"
+          (click)="SubmitForm()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{{ AdmissionForm.value | json }}

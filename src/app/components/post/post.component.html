@@ -1,0 +1,54 @@
+<div class="mx-auto w-full py-5 bg-primary5 min-h-screen">
+  <div class="w-full container mx-auto flex justify-end mb-5">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input type="text" pInputText #Searchbar placeholder="Search PostTitle" />
+    </span>
+  </div>
+  <div class="container mx-auto">
+    <div
+      *ngFor="let item of allPosts"
+      class="flex bg-white mb-5 w-full h-60 md:flex-row border-2 hover:shadow-[5px_5px_0px_0px_#000] border-black"
+    >
+      <img
+        class="object-fill rounded-none border-r-2 p-1 border-black"
+        src="{{ item.PostImageLink }}"
+        alt="Post Image"
+        style="height: 100%;max-width: 400px;min-width: 400px;"
+      />
+      <div class="flex flex-col w-full gap-2">
+        <div class="flex flex-col justify-start p-6">
+          <p class="mb-2 text-xl font-semibold">
+            {{ item.PostTitle }}
+          </p>
+          <p class="mb-4 text-sm font-medium line-clamp-3">
+            {{ item.PostBody }}
+          </p>
+          <p class="text-xs text-neutral-500 dark:text-neutral-300">
+            {{ item.createdAt }}
+          </p>
+        </div>
+        <div class="w-full flex justify-center">
+          <button
+            class="w-1/12 bg-white border-2 font-semibold py-1.5 border-black hover:bg-black hover:text-white"
+          >
+            View
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="!findSearchPost"
+      class="min-h-screen container mx-auto flex justify-center"
+    >
+      <div class="flex flex-col w-full h-full">
+        <div class="flex w-full h-full justify-center">
+          <img src="../../../assets/Nofilter.png" alt="" class="w-1/2 h-1/2" />
+        </div>
+        <div class="flex w-full h-full justify-center">
+          <p class="text-xl font-semibold">No Post Found</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
