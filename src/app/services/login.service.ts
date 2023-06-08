@@ -11,6 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoginService {
   Username: BehaviorSubject<string> = new BehaviorSubject('');
+  CheckLogin: BehaviorSubject<boolean> = new BehaviorSubject(false);
   constructor(private http: HttpClient) {}
 
   Signup(UserData: UserSignup) {
@@ -25,5 +26,9 @@ export class LoginService {
 
   setUserName(userName: string) {
     this.Username.next(userName);
+  }
+
+  setLoginStatus(status: boolean) {
+    this.CheckLogin.next(status);
   }
 }

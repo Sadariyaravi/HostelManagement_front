@@ -6,6 +6,7 @@ import { AdmissionFormComponent } from './admission-form/admission-form.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReusableFormsModule } from 'src/app/reusable-forms/reusable-forms.module';
 import { FieldsetModule } from 'primeng/fieldset';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [AdmissionFormComponent],
   imports: [
@@ -14,7 +15,8 @@ import { FieldsetModule } from 'primeng/fieldset';
     FormsModule,
     ReactiveFormsModule,
     ReusableFormsModule,
-    FieldsetModule
+    FieldsetModule,
+    MatSnackBarModule,
   ],
 })
 export class AdmissionModule {}

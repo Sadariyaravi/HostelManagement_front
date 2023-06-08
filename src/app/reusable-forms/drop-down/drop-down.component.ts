@@ -1,5 +1,6 @@
 import { Component, Input, Self } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import collegeLookup from 'src/app/models/DBmodels/college';
 
 @Component({
   selector: 'app-drop-down',
@@ -8,12 +9,10 @@ import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 })
 export class DropDownComponent implements ControlValueAccessor {
   @Input() label = '';
-  @Input() model = [
-    { name: 'GIT', id: 1 },
-    { name: 'Nirma', id: 2 },
-    { name: 'DAIICT', id: 3 },
-  ];
+  @Input() model: Array<object> = [];
   @Input() iconclass = '';
+  @Input() optionValue = '';
+  @Input() optionLabel = '';
 
   constructor(@Self() public ngcontrol: NgControl) {
     this.ngcontrol.valueAccessor = this;

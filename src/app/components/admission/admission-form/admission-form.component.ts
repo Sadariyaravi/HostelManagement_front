@@ -1,6 +1,10 @@
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import collegeLookup from 'src/app/models/DBmodels/college';
+import { CollegeService } from 'src/app/services/college.service';
+
 @Component({
   selector: 'app-admission-form',
   templateUrl: './admission-form.component.html',
@@ -8,8 +12,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AdmissionFormComponent implements OnInit {
   AdmissionForm!: FormGroup;
-  constructor(private FB: FormBuilder) {}
+  collegeLookup!: Array<collegeLookup>;
+  constructor(
+    private FB: FormBuilder,
+    private collegeService: CollegeService,
+    private Toastservice: MatSnackBar
+  ) {}
   ngOnInit(): void {
+    this.GetColleges();
     this.AdmissionForm = this.FB.group({
       firstName: ['', Validators.required],
       middlename: ['', Validators.required],
@@ -33,5 +43,21 @@ export class AdmissionFormComponent implements OnInit {
     } else {
       console.log('submitted');
     }
+  }
+
+  GetColleges() {
+    this.collegeService.GetColleges().subscribe({
+      next: (colleges) => {
+        this.collegeLookup = colleges;
+      },
+      error: (err) => {
+        let Toast = this.Toastservice.open('internal server error', 'Ok', {
+          duration: 3000,
+        });
+      },
+      complete: () => {
+        console.log('complete');
+      },
+    });
   }
 }

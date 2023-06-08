@@ -54,29 +54,35 @@
               <ng-template pTemplate="content">Body Content</ng-template>
               <ng-template pTemplate="footer">Footer Content</ng-template>
             </p-sidebar>
-            <p-button
-              (click)="sidebarVisible = true"
-              icon="pi pi-arrow-right"
-            ></p-button>
           </div>
 
-          <div class="flex flex-col justify-center">
-            <h1 class="pt-2 font-semibold">{{ userName | uppercase }}</h1>
+          <div class="flex gap-3" *ngIf="loginStatus">
+            <div class="flex flex-col justify-center">
+              <h1 class="pt-2 font-semibold">{{ userName }}</h1>
+            </div>
+            <p-avatar
+              icon="fa-solid fa-user"
+              (click)="sidebarVisible = true"
+              styleClass="mr-2 bg-black hover:bg-white rounded-none py-1 hover:text-black hover:shadow-[5px_5px_0px_0px_#000]"
+              size="large"
+              shape="square"
+            ></p-avatar>
           </div>
-          <p-avatar
-            icon="fa-solid fa-user"
-            (click)="sidebarVisible = true"
-            styleClass="mr-2 bg-black"
-            size="large"
-            shape="circle"
-          ></p-avatar>
+          <div class="flex flex-col justify-center mb-2" *ngIf="loginStatus">
+            <button
+              class="bg-black h-12 w-12 p-2 text-white hover:shadow-[5px_5px_0px_0px_#000] hover:bg-white hover:text-black"
+              (click)="Logout()"
+            >
+              <i class="fa-solid fa-arrow-right-from-bracket fa-xl font-extrabold"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </nav>
 <!-- nav2 -->
-<div class="bg-[#7209b7] border-b-2 border-black">
+<div class="bg-[#7209b7] border-b-2 border-black" *ngIf="loginStatus">
   <p-menubar
     [model]="items"
     styleClass="bg-[#7209b7] container mx-auto h-16 m-0 p-2 rounded-none text-white border-none"

@@ -139,6 +139,7 @@ export class LoginComponent implements OnInit {
             });
           }
           this.Loginservice.setUserName(this.cookieService.get('userName'));
+          this.Loginservice.setLoginStatus(true);
         },
         error: (error) => {
           if (error.error.message) {
@@ -173,10 +174,14 @@ export class LoginComponent implements OnInit {
       };
       this.Loginservice.Signup(UserData).subscribe({
         next: (data) => {
-          this.snackbar.open(data.message, 'ok', { duration: 1000 });
+          let toast = this.snackbar.open(data.message, 'ok', {
+            duration: 3000,
+          });
         },
         error: (error) => {
-          console.log(error.error.message);
+          let toast = this.snackbar.open(error.error.message, 'ok', {
+            duration: 3000,
+          });
         },
         complete: () => {
           this.SignupForm.reset();

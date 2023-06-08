@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from '../login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [LoginComponent],
   imports: [
@@ -12,7 +13,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     LoginRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+
   ],
 })
 export class LoginModule {}

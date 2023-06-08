@@ -11,9 +11,11 @@
         <p-dropdown
           [options]="model"
           [formControl]="control"
-          optionLabel="name"
-          optionValue="id"
-          [styleClass]="'border-2 border-black w-full bg-primary6 rounded-none placeholder-black'"
+          optionLabel="{{ optionLabel }}"
+          optionValue="{{ optionValue }}"
+          [styleClass]="
+            'border-2 border-black w-full bg-primary6 rounded-none placeholder-black'
+          "
           class="w-full placeholder-black"
           placeholder="{{ label }}"
         ></p-dropdown>
@@ -27,9 +29,7 @@
         </div>
         <div *ngIf="control?.errors?.['pattern']" class="flex gap-2">
           <i class="fa-solid fa-circle-exclamation fa-bounce text-red-600"></i>
-          <p class="text-sm text-red-500 font-semibold">
-            Invalid {{ label }}
-          </p>
+          <p class="text-sm text-red-500 font-semibold">Invalid {{ label }}</p>
         </div>
       </div>
     </div>

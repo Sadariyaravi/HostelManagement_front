@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api/menuitem';
 import { LoginService } from 'src/app/services/login.service';
-import { PrimeTemplate } from "primeng/api";
+import { PrimeTemplate } from 'primeng/api';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,9 +12,18 @@ import { PrimeTemplate } from "primeng/api";
 export class NavbarComponent implements OnInit {
   sidebarVisible: boolean = false;
   items!: MenuItem[];
-  constructor(private loginService: LoginService) {
+  loginStatus: boolean = false;
+  constructor(
+    private loginService: LoginService,
+    private cookie: CookieService,
+    private router: Router
+  ) {
     this.loginService.Username.subscribe((name) => {
       this.userName = name;
+    });
+
+    this.loginService.CheckLogin.subscribe((status) => {
+      this.loginStatus = status;
     });
   }
   userName: string = '';
@@ -57,5 +68,11 @@ export class NavbarComponent implements OnInit {
           'bg-[#f1faee] text-black font-semibold border-2 border-black mr-2',
       },
     ];
+  }
+
+  Logout() {
+    this.cookie.deleteAll();
+    this.loginService.setLoginStatus(false);
+    this.router.navigate(['/']);
   }
 }

@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
     let userName = this.cookieService.get('userName');
     if (userName.length > 0) {
       this.FindUserName.setUserName(userName);
+      this.FindUserName.setLoginStatus(true)
     }
   }
 }
